@@ -11,7 +11,7 @@ namespace Xadrez_Console.tabuleiro
         public int linhas { get; set; }
         public int colunas { get; set; }
         // {get;set;} - pode possuir um número maior de linhas e colunas do que o xadrez por exemplo.
-        private Peca[,] pecas; // classe privativa, pois somente o tabuleiro tem acesso a elas.
+        private Peca[,] pecas; // classe privativa, pois somente o tabuleiro tem acesso a elas, não permitindo que nenhuma outra classe além do tabuleiro, possa fazer alguma interação
 
         public Tabuleiro()
         {
@@ -23,6 +23,12 @@ namespace Xadrez_Console.tabuleiro
             this.colunas = colunas;
             pecas = new Peca[linhas, colunas];
 
-        }   
+        }
+        
+        public Peca peca(int linha, int coluna)
+        // Método publico que permite retornar a matriz peças, ou seja, ele pode acessar uma peça na linha - coluna ou coluna -linha
+        {
+            return pecas[linha, coluna];
+        }
     }
 }
