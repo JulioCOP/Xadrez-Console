@@ -20,6 +20,8 @@ namespace Xadrez_Console
                 tab.inserirPeca(new Peao(tab, Cor.Preta), new Posicao(6, 2));
                 tab.inserirPeca(new Rei(tab, Cor.Preta), new Posicao(7, 4));
 
+                tab.inserirPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
+
                 // Imprimir tabuleiro na tela 
                 Tela.imprimirTabuleiro(tab);
             }

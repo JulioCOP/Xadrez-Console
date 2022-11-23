@@ -13,6 +13,7 @@ namespace Xadrez_Console
         {
             for (int i = 0; i < tab.linhas; i++)
             {
+                Console.Write(8 - i + "  ");
                 for (int j=0; j<tab.colunas; j++)
                 {
                     // Imprimir peça que está na posição J
@@ -22,12 +23,30 @@ namespace Xadrez_Console
                     }
                     else
                     {
-                       Console.Write(tab.peca(i, j) + " ");
+                        imprimirPeca(tab.peca(i, j));
+                        Console.Write(" ");
                     }
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine("   A B C D E F G H ");
 
+        }
+        // Método para modificar as cores de impressão na tela do terminal 
+
+        public static void imprimirPeca(Peca peca)
+        {
+            if (peca.cor == Cor.Branca)
+            {
+                Console.Write(peca);
+            }
+            else
+            {
+                ConsoleColor aux = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write(peca);
+                Console.ForegroundColor = aux;
+            }
         }
     }
 }
