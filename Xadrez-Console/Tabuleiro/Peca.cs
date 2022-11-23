@@ -8,6 +8,7 @@ using tabuleiro;
 namespace Xadrez_Console.tabuleiro
 {
     internal class Peca
+        // classe peça é uma classe genérica, ou seja, uma peça qualquer 
     {
         public Posicao posicao { get; set; }
         // Peça precisar estar em um determinado lugar no tabuleiro
@@ -23,12 +24,24 @@ namespace Xadrez_Console.tabuleiro
         {
 
         }
-        public Peca(Posicao posicao, Cor cor, Tabuleiro tab)
+        public Peca( Cor cor, Tabuleiro tab)
         {
-            this.posicao = posicao;
+            this.posicao = null;
             this.cor = cor;
             this.qtdMovimentos = 0; // Não é um argumento para o contrutor, pois no inicio do jogo, as peças possuem um total de 0 movimentos, ou seja, ela não sofreu nenhuma alteração ainda.
             this.tab = tab;
         }
+
+        public Peca(Tabuleiro tab, Cor cor)
+        {
+            this.tab = tab;
+            this.cor = cor;
+        }
     }
 }
+
+// Na Camada Tabuleiro, o tabuleiro possui uma classe com varias peças 
+
+// Porem deve-se criar uma nova camada, chamada jogo de xadrez, ao qual eu terei as minhas peças nomeadas (rei, bispo, cavalo, torre, dama, peão)
+
+// Nessas camada de jogo de xadrez, as classes de cada peça são heranças da classe Peças da camada tabuleiro

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using tabuleiro;
 
 namespace Xadrez_Console.tabuleiro
 {
@@ -29,6 +30,13 @@ namespace Xadrez_Console.tabuleiro
         // Método publico que permite retornar a matriz peças, ou seja, ele pode acessar uma peça na linha - coluna ou coluna -linha
         {
             return pecas[linha, coluna];
+        }
+        // Operação para coseguir inserir uma peça
+
+        public void inserirPeca(Peca p, Posicao pos)
+        {
+            pecas[pos.Linha, pos.Coluna] = p;
+            p.posicao= pos;
         }
     }
 }
