@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using tabuleiro;
@@ -25,6 +27,11 @@ namespace Xadrez_Console.tabuleiro
             pecas = new Peca[linhas, colunas];
 
         }
+        // Sobrecarga para o metodo Peca 
+        public Peca peca(Posicao pos)
+        {
+            return pecas[pos.Linha, pos.Coluna];
+        }
         
         public Peca peca(int linha, int coluna)
         // Método publico que permite retornar a matriz peças, ou seja, ele pode acessar uma peça na linha - coluna ou coluna -linha
@@ -33,10 +40,48 @@ namespace Xadrez_Console.tabuleiro
         }
         // Operação para coseguir inserir uma peça
 
+        // Método para realizar um teste de posição
+        public bool existePeca(Posicao pos)
+        {
+            validarPosicao(pos); // em caso de ser uma posição invalida, o método "validarPosicao" é cortado e assim aparece a mensagem da exceção 
+            return peca(pos) != null;
+        }
+
         public void inserirPeca(Peca p, Posicao pos)
         {
+            // Colocar peça aonde a posição no tabuleiro esta DISPONÍVEL
+            if (existePeca(pos))
+            {
+                throw new TabuleiroException("JÁ EXISTE UMA PEÇA PARA ESTA POSIÇÃO!");
+            }
             pecas[pos.Linha, pos.Coluna] = p;
             p.posicao= pos;
         }
+
+        //Controle de erros -> posições de acordo com a matriz, iniciando a partir da faixa 0
+
+        
+        public bool posicaoValida(Posicao pos)
+        // Método para testar se a posição da peça no tabueliro é valida
+        {
+            if (pos.Linha<0 || pos.Linha>= linhas || pos.Coluna<0 || pos.Coluna>= colunas)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public void validarPosicao(Posicao pos)
+        // Método recebe uma posição da peça e em caso de não ser válida,  - assim se a posição lançada para a peça não for valida de acordo com a matriz informada, será lançada uma excessão
+
+        {
+            if (!posicaoValida(pos))
+            {
+                throw new TabuleiroException("Posição inválida!");
+            }
+        }
+
     }
 }
