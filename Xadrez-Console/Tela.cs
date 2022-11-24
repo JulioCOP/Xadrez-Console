@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xadrez_Console.tabuleiro;
-
+using xadrez;
 namespace Xadrez_Console
 {
     internal class Tela
@@ -33,7 +33,14 @@ namespace Xadrez_Console
 
         }
         // Método para modificar as cores de impressão na tela do terminal 
+        public static PosicaoXadrez lerPosicaoXadrez()
+        {
+            string s = Console.ReadLine();
+            char Coluna= s[0];
+            int Linha = int.Parse(s[1] + "");
+            return new PosicaoXadrez(Coluna, Linha);
 
+        }
         public static void imprimirPeca(Peca peca)
         {
             if (peca.cor == Cor.Branca)

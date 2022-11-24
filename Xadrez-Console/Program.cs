@@ -13,9 +13,20 @@ namespace Xadrez_Console
             {
                 PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();    
                 // Ao instanciar uma matriz, por padrão, o programa jogar valor nulo para todas as linhas e colunas, em caso de não ser informado nenhum valor.
+                while (!partidaDeXadrez.terminada)
+                {
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partidaDeXadrez.tab);
 
+                    Console.Write("Origem: ");
+                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                    Console.Write("Destino: ");
+                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+
+                    partidaDeXadrez.executaMovimento(origem, destino);
+                    
+                }
                 // Imprimir tabuleiro na tela 
-                Tela.imprimirTabuleiro(partidaDeXadrez.tab);
             }
             catch (TabuleiroException e)
             {
