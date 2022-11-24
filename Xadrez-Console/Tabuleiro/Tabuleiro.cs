@@ -58,6 +58,20 @@ namespace Xadrez_Console.tabuleiro
             p.posicao= pos;
         }
 
+        //Método para retirar as peças que forem "comidas", do tabuleiro
+
+        public Peca retirarPeca(Posicao pos)
+        {
+            if (peca(pos) != null)
+            {
+                return null;
+            }
+            Peca aux = peca(pos);
+            aux.posicao = null;
+            pecas[pos.Linha, pos.Coluna] = null;
+            return aux;
+        }
+
         //Controle de erros -> posições de acordo com a matriz, iniciando a partir da faixa 0
 
         

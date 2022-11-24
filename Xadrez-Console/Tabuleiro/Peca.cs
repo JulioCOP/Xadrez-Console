@@ -31,7 +31,10 @@ namespace Xadrez_Console.tabuleiro
             this.qtdMovimentos = 0; // Não é um argumento para o contrutor, pois no inicio do jogo, as peças possuem um total de 0 movimentos, ou seja, ela não sofreu nenhuma alteração ainda.
             this.tab = tab;
         }
-
+        public void incrementarQtdDeMovimentos()
+        {
+            qtdMovimentos++;    
+        }
         public Peca(Tabuleiro tab, Cor cor)
         {
             this.tab = tab;
