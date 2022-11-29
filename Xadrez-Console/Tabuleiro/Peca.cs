@@ -3,7 +3,7 @@ using tabuleiro;
 
 namespace Xadrez_Console.tabuleiro
 {
-    class Peca
+   abstract class Peca
         // classe peça é uma classe genérica, ou seja, uma peça qualquer 
     {
         public Posicao posicao { get; set; }
@@ -28,6 +28,8 @@ namespace Xadrez_Console.tabuleiro
         {
             qtdMovimentos++;    
         }
+        public abstract bool[,] movimentosPossiveis();
+        // Peca é uma classe generalizada para as peças do tabuleiro, sendo assim, o metodo abstract para os movimentosPossiveis() é necessário para que assim não haja implementação nenhuma na classe em questão
 
     }
 }

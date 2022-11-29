@@ -20,6 +20,13 @@ namespace Xadrez_Console
 
                     Console.Write("Informe a posição de origem: ");
                     Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+
+                    bool[,] posicoesPossiveis = partidaDeXadrez.tab.peca(origem).movimentosPossiveis(); // A partir da posição de origem informada pelo usuário, será acessada a peça, para
+                                                                                                       // que possa ser verificada as suas regras de locomoção no tabuleiro
+
+                    Console.Clear();
+                    Tela.imprimirTabuleiro(partidaDeXadrez.tab, posicoesPossiveis);
+
                     Console.Write("Informe a posição destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
 
