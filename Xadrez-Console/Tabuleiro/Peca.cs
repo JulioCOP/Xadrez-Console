@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using tabuleiro;
 
 namespace Xadrez_Console.tabuleiro
 {
-    internal class Peca
+    class Peca
         // classe peça é uma classe genérica, ou seja, uma peça qualquer 
     {
         public Posicao posicao { get; set; }
@@ -20,26 +16,19 @@ namespace Xadrez_Console.tabuleiro
 
         public Tabuleiro tab { get; protected set; }
 
-        public Peca()
-        {
 
-        }
-        public Peca( Cor cor, Tabuleiro tab)
+        public Peca(Tabuleiro tab, Cor cor)
         {
             this.posicao = null;
+            this.tab = tab;
             this.cor = cor;
             this.qtdMovimentos = 0; // Não é um argumento para o contrutor, pois no inicio do jogo, as peças possuem um total de 0 movimentos, ou seja, ela não sofreu nenhuma alteração ainda.
-            this.tab = tab;
         }
         public void incrementarQtdDeMovimentos()
         {
             qtdMovimentos++;    
         }
-        public Peca(Tabuleiro tab, Cor cor)
-        {
-            this.tab = tab;
-            this.cor = cor;
-        }
+
     }
 }
 

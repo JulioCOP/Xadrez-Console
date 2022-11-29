@@ -18,9 +18,9 @@ namespace Xadrez_Console
                     Console.Clear();
                     Tela.imprimirTabuleiro(partidaDeXadrez.tab);
 
-                    Console.Write("Origem: ");
+                    Console.Write("Informe a posição de origem: ");
                     Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                    Console.Write("Destino: ");
+                    Console.Write("Informe a posição destino: ");
                     Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
 
                     partidaDeXadrez.executaMovimento(origem, destino);

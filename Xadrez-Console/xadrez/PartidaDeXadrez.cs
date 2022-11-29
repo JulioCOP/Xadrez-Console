@@ -16,7 +16,7 @@ namespace xadrez
             turno = 1;
             jogadorAtual = Cor.Branca;
             terminada = false;
-            colocarPecas();
+            inserirPecas();
         }
         public void executaMovimento(Posicao origem, Posicao destino)
         {
@@ -26,7 +26,7 @@ namespace xadrez
             Peca pecaCapturada = tab.retirarPeca(destino);
             tab.inserirPeca(p, destino);
         }
-        private void colocarPecas()
+        private void inserirPecas()
         {
             tab.inserirPeca(new Torre(tab, Cor.Branca), new PosicaoXadrez('c', 1).toPosicao());
             tab.inserirPeca(new Torre(tab, Cor.Branca), new PosicaoXadrez('c', 2).toPosicao());
