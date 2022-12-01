@@ -28,6 +28,21 @@ namespace Xadrez_Console.tabuleiro
         {
             qtdMovimentos++;    
         }
+        public bool existeMovimentosPossiveis() // Testar se a peça não está impedida de movimentar
+        {
+            bool[,] mat = movimentosPossiveis(); 
+            for (int i = 0; i< tab.linhas; i++)
+            {
+                for (int j = 0; j < tab.colunas; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public abstract bool[,] movimentosPossiveis();
         // Peca é uma classe generalizada para as peças do tabuleiro, sendo assim, o metodo abstract para os movimentosPossiveis() é necessário para que assim não haja implementação nenhuma na classe em questão
 

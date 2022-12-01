@@ -13,7 +13,7 @@ namespace Xadrez_Console
         {
             for (int i = 0; i < tab.linhas; i++)
             {
-                Console.Write(8 - i + "  ");
+                Console.Write(8 - i + " ");
                 for (int j=0; j<tab.colunas; j++)
                 {
                     imprimirPeca(tab.peca(i, j)); // Imprimir peça que está na posição J
@@ -21,7 +21,7 @@ namespace Xadrez_Console
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("   A B C D E F G H ");
+            Console.WriteLine("  A B C D E F G H");
 
         }
 
@@ -31,7 +31,7 @@ namespace Xadrez_Console
             ConsoleColor fundoAlterado = ConsoleColor.DarkGray;
             for (int i = 0; i < tab.linhas; i++)
             {
-                Console.Write(8 - i + "  ");
+                Console.Write(8 - i + " ");
                 for (int j = 0; j < tab.colunas; j++)
                 {
                     if (posicoesPossiveis[i, j])
@@ -44,10 +44,11 @@ namespace Xadrez_Console
                     }
                     imprimirPeca(tab.peca(i, j)); // Imprimir peça que está na posição J
                     Console.BackgroundColor = fundoOriginal;
+                    Console.WriteLine(" ");
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("   A B C D E F G H ");
+            Console.WriteLine("  A B C D E F G H");
             Console.BackgroundColor = fundoOriginal;
 
         }
