@@ -43,6 +43,10 @@ namespace Xadrez_Console.tabuleiro
             }
             return false;
         }
+        public bool podeMoverPara(Posicao pos)
+        {
+            return movimentosPossiveis()[pos.Linha, pos.Coluna];
+        }
         public abstract bool[,] movimentosPossiveis();
         // Peca é uma classe generalizada para as peças do tabuleiro, sendo assim, o metodo abstract para os movimentosPossiveis() é necessário para que assim não haja implementação nenhuma na classe em questão
 

@@ -36,6 +36,7 @@ namespace Xadrez_Console
 
                         Console.Write("Informe a posição destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partidaDeXadrez.validarPosicaoDeDestino(origem, destino);
 
                         partidaDeXadrez.realizaJogada(origem, destino); // Método para o usuário fazer uma jogada
                     }
