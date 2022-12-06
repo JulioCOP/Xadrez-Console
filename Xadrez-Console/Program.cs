@@ -3,6 +3,7 @@ using tabuleiro;
 using Xadrez_Console.tabuleiro;
 using xadrez;
 
+
 namespace Xadrez_Console
 {
     class Program
@@ -18,10 +19,7 @@ namespace Xadrez_Console
                     try
                     {
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partidaDeXadrez.tab);
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + partidaDeXadrez.turno);
-                        Console.WriteLine("Aguardando jogada da peça: " + partidaDeXadrez.jogadorAtual);
+                        Tela.imprimirPartida(partidaDeXadrez);
 
                         Console.WriteLine();
                         Console.Write("Informe a peça e sua posição de origem: ");
