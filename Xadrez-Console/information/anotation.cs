@@ -17,5 +17,9 @@ namespace Xadrez_Console.information
             // saída: Matriz que informa quais as posições possíveis de saída (matriz booleana) 
                         // VERDADEIRO: movimento possível
                         // FALSO: não é possível realizar o movimento 
+
+
+        // Quando um rei estará em chque ?
+            // Quando pelo menos uma peça adversária possui um movimneto possível para a casa deste rei, ou seja,  quando o rei entra em possibilidade de ser derrubado
     }
 }

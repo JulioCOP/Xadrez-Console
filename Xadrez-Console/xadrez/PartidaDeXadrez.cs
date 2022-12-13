@@ -100,6 +100,7 @@ namespace xadrez
             }
             return aux;
         }
+       
 
         public HashSet<Peca> pecaEmJogo(Cor cor)
         {
@@ -114,6 +115,8 @@ namespace xadrez
             aux.ExceptWith(coresDePecasCapturadas(cor)); //Retirar todas as peças capturadas da mesma cor, tendo-se as peças que ainda estão em jogo
             return aux;
         }
+
+        private Cor adversaria(Cor cor)
         public void colocarNovaPeca(char coluna, int linha, Peca peca)
         {
             tab.inserirPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
