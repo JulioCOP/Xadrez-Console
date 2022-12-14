@@ -28,6 +28,10 @@ namespace Xadrez_Console.tabuleiro
         {
             qtdMovimentos++;    
         }
+        public void decrementarQtdDeMovimentos()
+        {
+            qtdMovimentos--;
+        }
         public bool existeMovimentosPossiveis() // Testar se a peça não está impedida de movimentar
         {
             bool[,] mat = movimentosPossiveis(); 

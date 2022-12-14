@@ -16,6 +16,7 @@ namespace xadrez
         private HashSet<Peca> pecasCapturadas; // Conjuntos para todas as peças do tabuleiro e para as peças que forem capturadas
         // Conjunto são estruturs nas quais podemos fazer buscas rápidas e que não permitem repetição de elementos.
         // HashSet -  comando que dá categorias para cada elemento - ao buscar algo epecífico o elemento vai direto para ele (ex: sorvete no supermercado)
+        public bool xeque {  get; private set; }    
 
 
 
@@ -26,13 +27,12 @@ namespace xadrez
             jogadorAtual = Cor.Branca;
             terminada = false;
             // Necessário instanciar os conjuntos antes das peças serem inseridas no tabuleiro
-
+            xeque = false;
             pecas = new HashSet<Peca>();
             pecasCapturadas = new HashSet<Peca>();  
-            
             inserirPecas();
         }
-        public void executaMovimento(Posicao origem, Posicao destino)
+        public Peca executaMovimento(Posicao origem, Posicao destino)
         {
             Peca p = tab.retirarPeca(origem);
             // executarMovimento -> realizar jogada
@@ -43,11 +43,36 @@ namespace xadrez
             {
                 pecasCapturadas.Add(pecaCapturada);
             }
+            return pecaCapturada;
+        }
+        public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
+        {
+            Peca p = tab.retirarPeca(destino);
+            p.decrementarQtdDeMovimentos();
+            if (pecaCapturada != null)
+            {
+                tab.inserirPeca(pecaCapturada, destino);
+                pecasCapturadas.Remove(pecaCapturada);
+            }
+            tab.inserirPeca(p,origem);  
         }
 
-        public void realizaJogada(Posicao origem, Posicao destino)
+        public void realizaJogada(Posicao origem, Posicao destino) // Regra do xadrez: não pode colocar o seu próprio Rei em xeque
         {
-            executaMovimento(origem, destino);
+            Peca pecaCapturada = executaMovimento(origem, destino);
+            if (estaEmXeque(jogadorAtual))
+            {
+                desfazMovimento(origem, destino, pecaCapturada);
+                throw new TabuleiroException("Você NÃO PODE se colocar em XEQUE!");
+            }
+            if (estaEmXeque(adversaria(jogadorAtual)))
+            {
+                xeque = true;
+            }
+            else
+            {
+                xeque = false;
+            }
             turno++;
             mudaJogador();
         }
@@ -117,6 +142,51 @@ namespace xadrez
         }
 
         private Cor adversaria(Cor cor)
+        {
+            if (cor== Cor.Branca)
+            {
+                return Cor.Preta;
+            }
+            else
+            {
+                return Cor.Branca;
+            }
+        }
+        private Peca rei(Cor cor)
+        {
+            foreach (Peca x in pecaEmJogo(cor))
+            // Peca é superclasse enquanto o Rei é um subclasse desta superclasse, para que elas se comuniquem é necessário o uso do comando "is"
+            {
+                if (x is Rei) // se a variavel x é uma instância da  subclasse rei, retorna x (a própria peça) daquela mesma cor
+                {
+                    return x; 
+                }
+
+            } // operação criada para retornar um rei de uma determinada cor
+            return null;
+
+        }
+        // Método para demonstrar todos as possibiidades de movimento de TODAS as peças do tabuleiro
+
+        public bool estaEmXeque(Cor cor)
+        {
+            Peca R = rei(cor);
+            if (R == null)
+            {
+                throw new TabuleiroException("Não tem rei da cor " + cor + " no tabuleiro! ");
+
+            }
+            // analise para cada movimento possíveis das matrizes de peças
+            foreach (Peca x in pecaEmJogo(adversaria(cor)))
+            {
+                bool[,] mat = x.movimentosPossiveis(); // matriz de movimentos possíveis
+                if (mat[R.posicao.Linha, R.posicao.Coluna])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         public void colocarNovaPeca(char coluna, int linha, Peca peca)
         {
             tab.inserirPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
