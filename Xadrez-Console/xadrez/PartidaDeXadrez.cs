@@ -57,6 +57,7 @@ namespace xadrez
             tab.inserirPeca(p,origem);  
         }
 
+        
         public void realizaJogada(Posicao origem, Posicao destino) // Regra do xadrez: não pode colocar o seu próprio Rei em xeque
         {
             Peca pecaCapturada = executaMovimento(origem, destino);
@@ -65,7 +66,7 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você NÃO PODE se colocar em XEQUE!");
             }
-            if (estaEmXeque(adversaria(jogadorAtual)))
+            if (estaEmXeque(adversario(jogadorAtual)))
             {
                 xeque = true;
             }
@@ -127,7 +128,7 @@ namespace xadrez
         }
        
 
-        public HashSet<Peca> pecaEmJogo(Cor cor)
+        public HashSet<Peca> pecasEmJogo(Cor cor)
         {
             HashSet<Peca> aux = new HashSet<Peca>(); //conjunto temporário
             foreach (Peca x in pecas)
@@ -141,9 +142,9 @@ namespace xadrez
             return aux;
         }
 
-        private Cor adversaria(Cor cor)
+        private Cor adversario(Cor cor)
         {
-            if (cor== Cor.Branca)
+            if (cor == Cor.Branca)
             {
                 return Cor.Preta;
             }
@@ -154,7 +155,7 @@ namespace xadrez
         }
         private Peca rei(Cor cor)
         {
-            foreach (Peca x in pecaEmJogo(cor))
+            foreach (Peca x in pecasEmJogo(cor))
             // Peca é superclasse enquanto o Rei é um subclasse desta superclasse, para que elas se comuniquem é necessário o uso do comando "is"
             {
                 if (x is Rei) // se a variavel x é uma instância da  subclasse rei, retorna x (a própria peça) daquela mesma cor
@@ -164,23 +165,22 @@ namespace xadrez
 
             } // operação criada para retornar um rei de uma determinada cor
             return null;
-
         }
         // Método para demonstrar todos as possibiidades de movimento de TODAS as peças do tabuleiro
 
         public bool estaEmXeque(Cor cor)
         {
-            Peca R = rei(cor);
-            if (R == null)
+            Peca Rei = rei (cor);
+            if (Rei == null)
             {
                 throw new TabuleiroException("Não tem rei da cor " + cor + " no tabuleiro! ");
 
             }
             // analise para cada movimento possíveis das matrizes de peças
-            foreach (Peca x in pecaEmJogo(adversaria(cor)))
+            foreach (Peca x in pecasEmJogo(adversario(cor)))
             {
                 bool[,] mat = x.movimentosPossiveis(); // matriz de movimentos possíveis
-                if (mat[R.posicao.Linha, R.posicao.Coluna])
+                if (mat[Rei.posicao.Linha, Rei.posicao.Coluna])
                 {
                     return true;
                 }
