@@ -57,7 +57,7 @@ namespace xadrez
             tab.inserirPeca(p,origem);  
         }
 
-        
+
         public void realizaJogada(Posicao origem, Posicao destino) // Regra do xadrez: não pode colocar o seu próprio Rei em xeque
         {
             Peca pecaCapturada = executaMovimento(origem, destino);
@@ -66,7 +66,9 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você NÃO PODE se colocar em XEQUE!");
             }
-            if (estaEmXeque(adversario(jogadorAtual)))
+
+            var validXeque = estaEmXeque(adversario(jogadorAtual));
+            if (validXeque)
             {
                 xeque = true;
             }
@@ -170,8 +172,8 @@ namespace xadrez
 
         public bool estaEmXeque(Cor cor)
         {
-            Peca Rei = rei (cor);
-            if (Rei == null)
+            Peca R = rei (cor);
+            if (R == null)
             {
                 throw new TabuleiroException("Não tem rei da cor " + cor + " no tabuleiro! ");
 
@@ -180,7 +182,7 @@ namespace xadrez
             foreach (Peca x in pecasEmJogo(adversario(cor)))
             {
                 bool[,] mat = x.movimentosPossiveis(); // matriz de movimentos possíveis
-                if (mat[Rei.posicao.Linha, Rei.posicao.Coluna])
+                if (mat[R.posicao.Linha, R.posicao.Coluna])
                 {
                     return true;
                 }

@@ -21,7 +21,7 @@ namespace xadrez
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);
-            return p == null || p.cor != this.cor; //this.cor peça adversária 
+            return p == null || p.cor != cor; //this.cor peça adversária 
         }
         public override bool[,] movimentosPossiveis()
         {
@@ -33,7 +33,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos)) // Enquanto tiver casa livre ou peça adversária, a torre pode ser movida
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (tab.peca(pos) != null && tab.peca(pos).cor != this.cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
                 {
                     break; // A condição enquanto, para movimentação da peça Torre, para no mesmo instante
                 }
@@ -45,7 +45,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos)) // Enquanto tiver casa livre ou peça adversária, a torre pode ser movida
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (tab.peca(pos) != null && tab.peca(pos).cor != this.cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
                 {
                     break; // A condição enquanto, para movimentação da peça Torre, para no mesmo instante
                 }
@@ -57,7 +57,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos)) // Enquanto tiver casa livre ou peça adversária, a torre pode ser movida
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (tab.peca(pos) != null && tab.peca(pos).cor != this.cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
                 {
                     break; // A condição enquanto, para movimentação da peça Torre, para no mesmo instante
                 }
@@ -68,7 +68,7 @@ namespace xadrez
             while (tab.posicaoValida(pos) && podeMover(pos)) // Enquanto tiver casa livre ou peça adversária, a torre pode ser movida
             {
                 mat[pos.Linha, pos.Coluna] = true;
-                if (tab.peca(pos) != null && tab.peca(pos).cor != this.cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
+                if (tab.peca(pos) != null && tab.peca(pos).cor != cor) // se houver peça adversária, ou sja, tab.peça(casa do tabuleiro) for diferente de nula e se tiverpreenchida pora lguma peça 
                 {
                     break; // A condição enquanto, para movimentação da peça Torre, para no mesmo instante
                 }
