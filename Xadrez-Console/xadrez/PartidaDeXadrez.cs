@@ -1,12 +1,9 @@
-﻿using System;
-using System.Data;
-using tabuleiro;
+﻿using tabuleiro;
 using Xadrez_Console.tabuleiro;
-using System.Collections.Generic;
 
 namespace xadrez
 {
-    internal class PartidaDeXadrez
+    class PartidaDeXadrez
     {
         public Tabuleiro tab { get; private set; }
         public int turno { get; private set; }
@@ -14,7 +11,7 @@ namespace xadrez
         public bool terminada { get; private set; } // acesso apenas de leitura
         private HashSet<Peca> pecas;
         private HashSet<Peca> pecasCapturadas; // Conjuntos para todas as peças do tabuleiro e para as peças que forem capturadas
-        // Conjunto são estruturs nas quais podemos fazer buscas rápidas e que não permitem repetição de elementos.
+        // Conjunto são estruturas nas quais podemos fazer buscas rápidas e que não permitem repetição de elementos.
         // HashSet -  comando que dá categorias para cada elemento - ao buscar algo epecífico o elemento vai direto para ele (ex: sorvete no supermercado)
         public bool xeque {  get; private set; }    
 
@@ -66,15 +63,17 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você NÃO PODE se colocar em XEQUE!");
             }
+            Peca p = tab.peca(destino);
 
-            var validXeque = estaEmXeque(adversario(jogadorAtual));
-            if (validXeque)
+
+            if (estaEmXeque(adversario(jogadorAtual)))  
             {
                 xeque = true;
             }
             else
             {
                 xeque = false;
+                
             }
             turno++;
             mudaJogador();

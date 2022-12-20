@@ -22,7 +22,7 @@ namespace Xadrez_Console.tabuleiro
             this.posicao = null;
             this.tab = tab;
             this.cor = cor;
-            this.qtdMovimentos = 0; // Não é um argumento para o contrutor, pois no inicio do jogo, as peças possuem um total de 0 movimentos, ou seja, ela não sofreu nenhuma alteração ainda.
+            this.qtdMovimentos = 0; // Não é um argumento para o construtor, pois no inicio do jogo, as peças possuem um total de 0 movimentos, ou seja, ela não sofreu nenhuma alteração ainda.
         }
         public void incrementarQtdDeMovimentos()
         {
