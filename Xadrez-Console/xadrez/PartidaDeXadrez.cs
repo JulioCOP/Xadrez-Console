@@ -10,11 +10,10 @@ namespace xadrez
         public Cor jogadorAtual { get; private set; }
         public bool terminada { get; private set; } // acesso apenas de leitura
         private HashSet<Peca> pecas;
-        private HashSet<Peca> pecasCapturadas; // Conjuntos para todas as peças do tabuleiro e para as peças que forem capturadas
+        private HashSet<Peca> capturadas; // Conjuntos para todas as peças do tabuleiro e para as peças que forem capturadas
         // Conjunto são estruturas nas quais podemos fazer buscas rápidas e que não permitem repetição de elementos.
         // HashSet -  comando que dá categorias para cada elemento - ao buscar algo epecífico o elemento vai direto para ele (ex: sorvete no supermercado)
         public bool xeque {  get; private set; }    
-
 
 
         public PartidaDeXadrez()
@@ -26,19 +25,19 @@ namespace xadrez
             // Necessário instanciar os conjuntos antes das peças serem inseridas no tabuleiro
             xeque = false;
             pecas = new HashSet<Peca>();
-            pecasCapturadas = new HashSet<Peca>();  
+            capturadas = new HashSet<Peca>();  
             inserirPecas();
         }
         public Peca executaMovimento(Posicao origem, Posicao destino)
         {
             Peca p = tab.retirarPeca(origem);
-            // executarMovimento -> realizar jogada
+            // executaMovimento -> realizar jogada
             p.incrementarQtdDeMovimentos();
             Peca pecaCapturada = tab.retirarPeca(destino);
             tab.inserirPeca(p, destino);
             if(pecaCapturada != null) // se houver uma peça na casa em que foi movimentada, ou seja se a peça foi caputada será adicionado no metodo de "pecasCaptuadas
             {
-                pecasCapturadas.Add(pecaCapturada);
+                capturadas.Add(pecaCapturada);
             }
             return pecaCapturada;
         }
@@ -49,9 +48,9 @@ namespace xadrez
             if (pecaCapturada != null)
             {
                 tab.inserirPeca(pecaCapturada, destino);
-                pecasCapturadas.Remove(pecaCapturada);
+                capturadas.Remove(pecaCapturada);
             }
-            tab.inserirPeca(p,origem);  
+            tab.inserirPeca(p,origem); 
         }
 
 
@@ -63,9 +62,6 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você NÃO PODE se colocar em XEQUE!");
             }
-            Peca p = tab.peca(destino);
-
-
             if (estaEmXeque(adversario(jogadorAtual)))  
             {
                 xeque = true;
@@ -73,7 +69,6 @@ namespace xadrez
             else
             {
                 xeque = false;
-                
             }
             turno++;
             mudaJogador();
@@ -115,10 +110,10 @@ namespace xadrez
             }
         }
 
-        public HashSet<Peca> coresDePecasCapturadas(Cor cor) // método para ver quais cores das peças que foram capturadas
+        public HashSet<Peca> pecasCapturadas(Cor cor) // método para ver quais cores das peças que foram capturadas
         {
             HashSet<Peca> aux = new HashSet<Peca>(); //conjunto temporário
-            foreach(Peca x in pecasCapturadas) // Conjunto peca, pecorre todas as peças da classe pecasCapturadas
+            foreach(Peca x in capturadas) // Conjunto peca, pecorre todas as peças da classe pecasCapturadas
             {
                 if (x.cor == cor)
                 {
@@ -139,7 +134,7 @@ namespace xadrez
                     aux.Add(x);
                 }
             }
-            aux.ExceptWith(coresDePecasCapturadas(cor)); //Retirar todas as peças capturadas da mesma cor, tendo-se as peças que ainda estão em jogo
+            aux.ExceptWith(pecasCapturadas(cor)); //Retirar todas as peças capturadas da mesma cor, tendo-se as peças que ainda estão em jogo
             return aux;
         }
 

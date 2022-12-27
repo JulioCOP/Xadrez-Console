@@ -4,7 +4,7 @@ using Xadrez_Console.tabuleiro;
 using xadrez;
 
 
-namespace Xadrez_Console
+namespace xadrez_console
 {
      class Tela
     {
@@ -26,11 +26,12 @@ namespace Xadrez_Console
             Console.WriteLine();
             Console.WriteLine("Peças capturadas: ");
             Console.Write("Brancas: ");
-            imprimirConjunto(partida.coresDePecasCapturadas(Cor.Branca));
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            Console.WriteLine();
             Console.Write("Pretas: ");
             ConsoleColor aux = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            imprimirConjunto(partida.coresDePecasCapturadas(Cor.Preta));
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
             Console.ForegroundColor = aux;
             Console.WriteLine();
         }

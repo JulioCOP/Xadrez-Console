@@ -15,11 +15,6 @@ namespace Xadrez_Console.tabuleiro
         public int colunas { get; set; }
         // {get;set;} - pode possuir um número maior de linhas e colunas do que o xadrez por exemplo.
         private Peca[,] pecas; // classe privativa, pois somente o tabuleiro tem acesso a elas, não permitindo que nenhuma outra classe além do tabuleiro, possa fazer alguma interação
-
-        public Tabuleiro()
-        {
-
-        }
         public Tabuleiro(int linhas, int colunas)
         {
             this.linhas = linhas;
