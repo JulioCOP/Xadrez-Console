@@ -25,7 +25,7 @@ namespace tabuleiro
         // Sobrecarga para o metodo Peca 
         public Peca peca(Posicao pos)
         {
-            return pecas[pos.Linha, pos.Coluna];
+            return pecas[pos.linha, pos.coluna];
         }
         public Peca peca(int linha, int coluna)
         // Método publico que permite retornar a matriz peças, ou seja, ele pode acessar uma peça na linha - coluna ou coluna -linha
@@ -48,7 +48,7 @@ namespace tabuleiro
             {
                 throw new TabuleiroException("JÁ EXISTE UMA PEÇA PARA ESTA POSIÇÃO!");
             }
-            pecas[pos.Linha, pos.Coluna] = p;
+            pecas[pos.linha, pos.coluna] = p;
             p.posicao= pos;
         }
 
@@ -62,7 +62,7 @@ namespace tabuleiro
             }
             Peca aux = peca(pos);
             aux.posicao = null;
-            pecas[pos.Linha, pos.Coluna] = null;
+            pecas[pos.linha, pos.coluna] = null;
             return aux;
         }
 
@@ -72,7 +72,7 @@ namespace tabuleiro
         public bool posicaoValida(Posicao pos)
         // Método para testar se a posição da peça no tabueliro é valida
         {
-            if (pos.Linha<0 || pos.Linha>= linhas || pos.Coluna<0 || pos.Coluna>= colunas)
+            if (pos.linha <0 || pos.linha >= linhas || pos.coluna <0 || pos.coluna >= colunas)
             {
                 return false;
             }

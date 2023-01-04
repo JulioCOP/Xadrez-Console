@@ -1,4 +1,5 @@
-﻿using tabuleiro;
+﻿using System.Collections.Generic;
+using tabuleiro;
 
 namespace xadrez
 {
@@ -92,7 +93,7 @@ namespace xadrez
 
         public void validarPosicaoDeDestino(Posicao origem, Posicao destino)
         {
-            if (!tab.peca(origem).podeMoverPara(destino))
+            if (!tab.peca(origem).movimentoPossivel(destino))
             {
                 throw new TabuleiroException("Posição de destino inválida! ");
             }
@@ -175,7 +176,7 @@ namespace xadrez
             foreach (Peca x in pecasEmJogo(adversario(cor)))
             {
                 bool[,] mat = x.movimentosPossiveis(); // matriz de movimentos possíveis
-                if (mat[R.posicao.Linha, R.posicao.Coluna])
+                if (mat[R.posicao.linha, R.posicao.coluna])
                 {
                     return true;
                 }
