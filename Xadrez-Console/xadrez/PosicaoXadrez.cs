@@ -8,10 +8,6 @@ namespace xadrez
         public char coluna { get; set; }
         public int linha { get; set; }
         
-        public PosicaoXadrez()
-        {
-
-        }
         public PosicaoXadrez(char coluna, int linha)
         {
             this.coluna = coluna;
@@ -21,7 +17,7 @@ namespace xadrez
         public Posicao toPosicao()
             // toPosicao tem a mesma função do toString, ou seja, transformar as posições do xadrez para a posição da matriz no código
         {
-            return new Posicao(8-linha, coluna - 'a');
+            return new Posicao(8 - linha, coluna - 'a');
         }
         public override string ToString()
         {

@@ -1,5 +1,7 @@
 ﻿using tabuleiro;
 using xadrez;
+using System;
+using System.Collections.Generic;
 
 
 namespace xadrez_console
@@ -11,6 +13,7 @@ namespace xadrez_console
             imprimirTabuleiro(partida.tab);
             Console.WriteLine();
             imprimirPecasCapturadas(partida);
+            Console.WriteLine();
             Console.WriteLine("Turno: " + partida.turno);
             Console.WriteLine("Aguardando jogada da peça: " + partida.jogadorAtual);
             if (partida.xeque)
@@ -50,11 +53,10 @@ namespace xadrez_console
                 for (int j=0; j<tab.colunas; j++)
                 {
                     imprimirPeca(tab.peca(i, j)); // Imprimir peça que está na posição J
-                    Console.Write(" "); 
                 }
                 Console.WriteLine();
             }
-            Console.Write("  A  B  C  D  E  F  G  H ");
+            Console.WriteLine("  a b c d e f g h");
 
         }
 
@@ -77,13 +79,11 @@ namespace xadrez_console
                     }
                     imprimirPeca(tab.peca(i, j)); // Imprimir peça que está na posição J
                     Console.BackgroundColor = fundoOriginal;
-                    Console.Write("  ");
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("  A   B   C   D   E   F   G   H  ");
+            Console.WriteLine("  a b c d e f g h");
             Console.BackgroundColor = fundoOriginal;
-
         }
 
 
