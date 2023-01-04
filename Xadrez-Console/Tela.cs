@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Xadrez_Console.tabuleiro;
+﻿using tabuleiro;
 using xadrez;
 
 

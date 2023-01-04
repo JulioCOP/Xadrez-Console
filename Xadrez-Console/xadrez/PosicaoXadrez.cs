@@ -1,5 +1,4 @@
-﻿using System;
-using tabuleiro;
+﻿using tabuleiro;
 // Classe PosicaoXadrez é posição das peças no contexto do xadrez
 
 namespace xadrez

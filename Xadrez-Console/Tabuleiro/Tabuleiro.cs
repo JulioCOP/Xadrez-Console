@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using tabuleiro;
 
-namespace Xadrez_Console.tabuleiro
+namespace tabuleiro
 {
     class Tabuleiro
     {
@@ -25,9 +25,8 @@ namespace Xadrez_Console.tabuleiro
         // Sobrecarga para o metodo Peca 
         public Peca peca(Posicao pos)
         {
-                return pecas[pos.Linha, pos.Coluna];
+            return pecas[pos.Linha, pos.Coluna];
         }
-        
         public Peca peca(int linha, int coluna)
         // Método publico que permite retornar a matriz peças, ou seja, ele pode acessar uma peça na linha - coluna ou coluna -linha
         {

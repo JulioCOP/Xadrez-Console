@@ -1,7 +1,5 @@
-﻿using System;
-using tabuleiro;
+﻿namespace tabuleiro
 
-namespace Xadrez_Console.tabuleiro
 {
    abstract class Peca
         // classe peça é uma classe genérica, ou seja, uma peça qualquer 
