@@ -22,4 +22,7 @@ namespace Xadrez_Console.information
         // Quando um rei estará em chque ?
             // Quando pelo menos uma peça adversária possui um movimneto possível para a casa deste rei, ou seja,  quando o rei entra em possibilidade de ser derrubado
     }
+
+    // Regra de xeque mate - verificar se todas as peças da mesma cor do Rei se existe alguma, ao mover, retira o xeque do Rei
+    // OU SEJA, caso esgote todas as possibilidades e não existir nenhuma peça que salve o Rei é FIM DE JOGO
 }

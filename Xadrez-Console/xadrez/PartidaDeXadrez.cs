@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 using tabuleiro;
 
 namespace xadrez
@@ -70,8 +71,16 @@ namespace xadrez
             {
                 xeque = false;
             }
-            turno++;
-            mudaJogador();
+            if (testeXequeMate(adversario(jogadorAtual)))
+            {
+                terminada=true; // Realizada a joga e se o adversário está em xeque mate - FIM DE JOGO
+            }
+            else
+            {
+                turno++;
+                mudaJogador();
+            }
+            
         }
 
 
@@ -183,6 +192,39 @@ namespace xadrez
             }
             return false;
         }
+        public bool testeXequeMate(Cor cor)
+        {
+            if (!estaEmXeque(cor))
+            {
+                return false; // Se o Rei da cor do jogador não estiver em Xeque Mate, então o retorno é falso ( O rei não esta em xeque mate)
+            }
+            foreach(Peca x in pecasEmJogo(cor)) // função que -  ao mover uma peça do tabuleiro, será possível remover o xeque mate 
+            {
+                bool[,] mat = x.movimentosPossiveis();
+                for(int i = 0; i < tab.linhas; i++) 
+                {
+                    for (int j=0;j< tab.colunas; j++) // matriz para cada movimento 
+                    {
+                        if (mat[i, j]) // Posição possível para peça X
+                        {
+                            Posicao origem = x.posicao;
+                            Posicao destino = new Posicao(i,j);
+                            Peca pecaCapturada =  executaMovimento(origem, destino); // É realizado o movimento
+                            bool testeXeque = estaEmXeque(cor); // Testa se após o movimento o Rei está em xeque
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                            {
+                                return false; // Se não está mais em xeque mate, o movimento de xeque é retirado, por isso a função retorna o falso
+                            }
+                        }
+                    }
+                }
+            }
+            return true; // Se após realizar o movimento de teste e verificar todas as peças em caso de ser possível sair do xeque
+
+                            // É retornado o valor True, ou seja, FIM DE JOGO - XEQUE MATE
+        }
+
         public void colocarNovaPeca(char coluna, int linha, Peca peca)
         {
             tab.inserirPeca(peca, new PosicaoXadrez(coluna, linha).toPosicao());
