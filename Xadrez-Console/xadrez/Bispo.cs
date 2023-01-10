@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using tabuleiro;
+﻿using tabuleiro;
 
 namespace xadrez
 {
@@ -47,7 +46,7 @@ namespace xadrez
                     {
                         break;
                     }
-                    pos.definirValores(pos.linha - 1, pos.coluna - 1);
+                    pos.definirValores(pos.linha - 1, pos.coluna + 1);
                 }
             }
             // SE

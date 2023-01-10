@@ -1,5 +1,4 @@
 ﻿namespace tabuleiro
-
 {
    abstract class Peca
         // classe peça é uma classe genérica, ou seja, uma peça qualquer 

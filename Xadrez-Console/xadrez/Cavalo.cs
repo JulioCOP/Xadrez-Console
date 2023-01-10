@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using tabuleiro;
+﻿using tabuleiro;
 
 namespace xadrez
 {
@@ -50,12 +44,12 @@ namespace xadrez
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            pos.definirValores(posicao.linha+1, posicao.coluna+2);
+            pos.definirValores(posicao.linha + 1, posicao.coluna + 2);
             if(tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            pos.definirValores(posicao.linha+2, posicao.linha+1);
+            pos.definirValores(posicao.linha + 2, posicao.linha + 1);
             if(tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha,pos.coluna] = true;   
@@ -65,7 +59,7 @@ namespace xadrez
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-            pos.definirValores(pos.linha+1, pos.coluna-2);
+            pos.definirValores(pos.linha + 1, pos.coluna - 2);
             if (tab.posicaoValida(pos)&& podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;

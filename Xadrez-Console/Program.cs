@@ -11,31 +11,31 @@ namespace xadrez_console
         {
             try
             {
-                PartidaDeXadrez partidaDeXadrez = new PartidaDeXadrez();    
+                PartidaDeXadrez partida = new PartidaDeXadrez();    
                 // Ao instanciar uma matriz, por padrão, o programa jogar valor nulo para todas as linhas e colunas, em caso de não ser informado nenhum valor.
-                while (!partidaDeXadrez.terminada)
+                while (!partida.terminada)
                 {
                     try
                     {
                         Console.Clear();
-                        Tela.imprimirPartida(partidaDeXadrez);
+                        Tela.imprimirPartida(partida);
 
                         Console.WriteLine();
                         Console.Write("Informe a peça e sua posição de origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
-                        partidaDeXadrez.validarPosicaoDeOrigem(origem);
+                        partida.validarPosicaoDeOrigem(origem);
 
-                        bool[,] posicoesPossiveis = partidaDeXadrez.tab.peca(origem).movimentosPossiveis(); // A partir da posição de origem informada pelo usuário, será acessada a peça, para
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis(); // A partir da posição de origem informada pelo usuário, será acessada a peça, para
                                                                                                             // que possa ser verificada as suas regras de locomoção no tabuleiro
 
                         Console.Clear();
-                        Tela.imprimirTabuleiro(partidaDeXadrez.tab, posicoesPossiveis);
+                        Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
                         Console.Write("Informe a posição destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                        partidaDeXadrez.validarPosicaoDeDestino(origem, destino);
+                        partida.validarPosicaoDeDestino(origem, destino);
 
-                        partidaDeXadrez.realizaJogada(origem, destino); // Método para o usuário fazer uma jogada
+                        partida.realizaJogada(origem, destino); // Método para o usuário fazer uma jogada
                     }
                     catch(TabuleiroException e)
                     {
@@ -45,7 +45,7 @@ namespace xadrez_console
                     
                 }
                 Console.Clear();
-                Tela.imprimirPartida(partidaDeXadrez);
+                Tela.imprimirPartida(partida);
                 // Imprimir tabuleiro na tela 
             }
             catch (TabuleiroException e)
