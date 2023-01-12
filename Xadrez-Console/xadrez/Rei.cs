@@ -5,7 +5,8 @@ namespace xadrez
     class Rei : Peca
     {
 
-        private PartidaDeXadrez partida;
+        private PartidaDeXadrez partida; // Classe Rei precisa aessar o método partida, 
+                                         // para que seja verificado se houve XEQUE na jogada
 
         public Rei(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor)
         {
