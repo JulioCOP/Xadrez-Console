@@ -143,6 +143,22 @@ namespace xadrez
                 desfazMovimento(origem, destino, pecaCapturada);
                 throw new TabuleiroException("Você NÃO PODE se colocar em XEQUE!");
             }
+            Peca p = tab.peca(destino); // Qual foi a peça movida ?!
+
+            // #JOGADA ESPECIAL PROMOCAO
+            if(p is Peao)
+            {
+                if((p.cor == Cor.Branca && destino.linha==0) || (p.cor == Cor.Preta && destino.linha == 7))
+                {
+                    p = tab.retirarPeca(destino);
+                    pecas.Remove(p);
+                    Peca dama = new Dama(tab, p.cor);
+                    tab.inserirPeca(dama, destino);
+                    pecas.Add(dama);
+                }
+            }
+
+
             if (estaEmXeque(adversario(jogadorAtual)))  
             {
                 xeque = true;
@@ -160,7 +176,6 @@ namespace xadrez
                 turno++;
                 mudaJogador();
             }
-            Peca p = tab.peca(destino); // Qual foi a peça movida ?!
 
             // #JOGADA ESPECIAL ENPASSANT
             if (p is Peao && (destino.linha == origem.linha -2 || destino.linha == origem.linha + 2))
