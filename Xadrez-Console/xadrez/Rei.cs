@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using tabuleiro;
+﻿using tabuleiro;
 
 namespace xadrez
 {
@@ -87,12 +86,12 @@ namespace xadrez
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-             
+
             // #JOGADA ESPECIAL 0 -> ROQUE PEQUENO
-                // A jogada ocorre quando o REI move duas casas para direita e a torre duas casas para esquerda e só ocorre quando
-                // ambas as peças não moveram, não possui peças entre elas e nenhum dos dois jogadores está em xeque;
-            
-            if (qtdMovimentos ==0 && !partida.xeque)
+            // A jogada ocorre quando o REI move duas casas para direita e a torre duas casas para esquerda e só ocorre quando
+            // ambas as peças não moveram, não possui peças entre elas e nenhum dos dois jogadores está em xeque;
+
+            if (qtdMovimentos==0 && !partida.xeque)
             {
                 Posicao posTorre1 = new Posicao(posicao.linha, posicao.coluna + 3);
                 if (testeTorreParaRoque(posTorre1))

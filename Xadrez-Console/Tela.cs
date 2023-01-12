@@ -96,11 +96,11 @@ namespace xadrez_console
 
 
 
-        // Método para modificar as cores de impressão na tela do terminal 
+        // Método para ler o que usuário digita
         public static PosicaoXadrez lerPosicaoXadrez()
         {
             string s = Console.ReadLine();
-            char Coluna= s[0];
+            char Coluna = s[0];
             int Linha = int.Parse(s[1] + "");
             return new PosicaoXadrez(Coluna, Linha);
 
